@@ -1,0 +1,46 @@
+.navbar-inverse {
+  	border-radius:0;
+}
+
+/* customize nav bar CSS
+.navbar-custom {
+	background-color:#2406F0;
+    color:#ffffff;
+  	border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+  	color:#fff;
+  	padding-left:20px;
+  	padding-right:20px;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+  background-color: #5137FF;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus, .navbar-custom .navbar-nav .open>a  { 
+  background-color: #5137FF;
+}
+
+     
+/* dropdown */
+/*
+.navbar-custom .navbar-nav .dropdown-menu  { 
+  background-color: #5137FF;
+}
+.navbar-custom .navbar-nav .dropdown-menu>li>a  { 
+  color: #fff;
+}
+.navbar-custom .navbar-nav .dropdown-menu>li>a:hover,.navbar-custom .navbar-nav .dropdown-menu>li>a:focus  { 
+  color: #5137FF;
+}
+      
+.navbar-custom .navbar-brand {
+  	color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+  	background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+  	background-color:#5137FF;
+}*/
