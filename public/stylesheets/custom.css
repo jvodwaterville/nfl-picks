@@ -33,3 +33,19 @@
 .pickButton{
     padding: 5px;
 }
+
+#homeImage{
+    width: 100%;
+    height: 100vh;
+    background-image: url(/images/layout/home.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#register-password-error-message{
+    color: red;
+    padding: 5px;
+    text-align: center;
+    display: none;
+}

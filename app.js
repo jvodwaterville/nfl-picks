@@ -4,7 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
+// Database connection
+//var mongo = require('mongodb');
+//var monk = require('monk');
+//var db = monk('localhost:27017/nfl-picks');
+
+//mongoose db connection
+mongoose.connect('mongodb://localhost:27017/nfl-picks');
+
+//test connection
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
+
+//set routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var selections = require('./routes/selections');
@@ -17,13 +34,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images/layout', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//use routes
 app.use('/', routes);
 app.use('/users', users);
 app.use('/selections', selections);
