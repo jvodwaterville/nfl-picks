@@ -26,12 +26,12 @@
     margin-right: 10px;
 }
 
-.leagueButtonHolder{
-    display: inline-block;
-}
-
 .pickButton{
     padding: 5px;
+}
+
+.display-inline{
+    display: inline-block;
 }
 
 #homeImage{

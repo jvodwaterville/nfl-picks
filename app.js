@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var sessions = require('client-sessions');
+var models = require('./models');
+var middleware = require('./middleware');
 
 // Database connection
 //var mongo = require('mongodb');
@@ -29,11 +32,29 @@ var leagues = require('./routes/leagues');
 
 var app = express();
 
+//Middleware
+//set session cookie
+app.use(sessions({
+  cookieName: 'session',
+  secret: '8nxwx931T]9Q1R4#b2/a:+-5lvKZU1oc9P46ld}0p(&LyD7D63*!8oU5I)1|i[b', // should be a large unguessable string or Buffer
+  duration: 1 * 60 * 60 * 1000, // how long the session will stay valid in ms
+}));
+
+//set session details
+app.use(middleware.simpleAuth);
+
+function requireLogin(req,res,next){
+    if(!req.user){
+        res.redirect('/');
+    } else {
+        next();
+    }
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/layout', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());

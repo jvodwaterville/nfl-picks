@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
 /**
  * Create a new user account.
  *
- * Once a user is logged in, they will be sent to the dashboard page.
+ * Once a user is logged in, they will be sent to the selections page.
  */
 router.post('/register', function (req, res) {
     var salt = bcrypt.genSaltSync(10);
@@ -39,6 +39,32 @@ router.post('/register', function (req, res) {
             res.redirect('/selections');
         }
     });
+});
+
+/**
+ * Log a user into their account.
+ *
+ * Once a user is logged in, they will be sent to the selections page.
+ */
+router.post('/login', function(req, res) {
+  models.User.findOne({ email: req.body.email }, 'fName lName email password', function(err, user) {
+    if (!user) {
+      res.render('index', { error: "Incorrect email / password." });
+    } else {
+      if (bcrypt.compareSync(req.body.pwd, user.password)) {
+        req.session.user = user;
+        res.redirect('/selections');
+      } else {
+        res.render('index', { error: "Incorrect email / password."});
+      }
+    }
+  });
+});
+
+/* GET users listing. */
+router.get('/logout', function (req, res, next) {
+    req.session.reset();
+    res.redirect('/');
 });
 
 module.exports = router;

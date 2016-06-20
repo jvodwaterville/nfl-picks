@@ -44,19 +44,19 @@ html
                         button(type="submit",class="btn btn-default") Register
 
     div(class="container text-center padding10px")
-        form(class="form-inline", action="/forms/login", method="post", role="form")
+        form(class="form-inline", action="/users/login", method="post", role="form")
             div(class="form-group")
                 div(class="padding10pxright")
                     label(class="sr-only", for="email") Email:
-                    input(type="email", class="form-control", id="email", placeholder="Email", required)
+                    input(type="email", class="form-control", name="email", id="email", placeholder="Email", required)
             div(class="form-group")
                 div(class="padding10pxright")
                     label(class="sr-only", for="pwd") Password:
-                    input(type="password", class="form-control", id="pwd", placeholder="Password", required)
+                    input(type="password", class="form-control", name="pwd", id="pwd", placeholder="Password", required)
             div(class="form-group")
-                div(class="padding10pxright")
+                div(class="padding10pxright display-inline")
                     button(type="submit", class="btn btn-default") Log In
-            a(class="",data-toggle="modal", data-target="#registerModal") Or Register
+                a(class="display-inline",data-toggle="modal", data-target="#registerModal") Or Register
 
     div(class="container-fluid text-center")
         if error
