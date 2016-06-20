@@ -47,15 +47,15 @@ router.post('/register', function (req, res) {
  * Once a user is logged in, they will be sent to the selections page.
  */
 router.post('/login', function(req, res) {
-  models.User.findOne({ email: req.body.email }, 'fName lName email password', function(err, user) {
+  models.User.findOne({ email: req.body.email }, function(err, user) {
     if (!user) {
-      res.render('index', { error: "Incorrect email / password." });
+      res.render('index', { error: "Incorrect email / password.", csrfToken: req.csrfToken() });
     } else {
       if (bcrypt.compareSync(req.body.pwd, user.password)) {
         req.session.user = user;
         res.redirect('/selections');
       } else {
-        res.render('index', { error: "Incorrect email / password."});
+        res.render('index', { error: "Incorrect email / password.", csrfToken: req.csrfToken()});
       }
     }
   });

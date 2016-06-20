@@ -15,3 +15,16 @@ module.exports.User = mongoose.model('User', new Schema({
   email:        { type: String, unique: true },
   password:     String,
 }, { collection: 'user' }));
+
+
+/**
+ * Our League model.
+ *
+ * This is how we create, edit, delete, and retrieve leagues via MongoDB.
+ */
+module.exports.League = mongoose.model('League', new Schema({
+  id:           ObjectId,
+  lName:    String,
+  eCode:     String,
+  admin:     String,
+}, { collection: 'league' }));

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var sessions = require('client-sessions');
+var csrf = require('csurf');
 var models = require('./models');
 var middleware = require('./middleware');
 
@@ -38,6 +39,9 @@ app.use(sessions({
   cookieName: 'session',
   secret: '8nxwx931T]9Q1R4#b2/a:+-5lvKZU1oc9P46ld}0p(&LyD7D63*!8oU5I)1|i[b', // should be a large unguessable string or Buffer
   duration: 1 * 60 * 60 * 1000, // how long the session will stay valid in ms
+    httpOnly: true,
+    secure: true,
+    ephemeral: true,
 }));
 
 //set session details
@@ -60,6 +64,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(csrf());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //use routes

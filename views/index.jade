@@ -17,26 +17,27 @@ html
                     button(type="button",class="close",data-dismiss="modal") &times;
                     h4(class="modal-title") Register Account
                 form(class="form-horizontal", role="form", name="register", action='/users/register', method="post",onsubmit="return validateRegisterForm()", id="register-form")
+                    input(type="hidden", name="_csrf", value=csrfToken)
                     div(class="modal-body")
                         div(class="form-group")
                             label(class="control-label col-sm-2", for="fname") First Name:
-                            dic(class="col-sm-10")
+                            div(class="col-sm-10")
                                 input(type="text", class="form-control", id="fname", name="fname", placeholder="First Name", required)
                         div(class="form-group")
                             label(class="control-label col-sm-2", for="lname") Last Name:
-                            dic(class="col-sm-10")
+                            div(class="col-sm-10")
                                 input(type="text", class="form-control", id="lname", name="lname", placeholder="Last Name", required)
                         div(class="form-group")
                             label(class="control-label col-sm-2", for="email") Email:
-                            dic(class="col-sm-10")
+                            div(class="col-sm-10")
                                 input(type="email", class="form-control", id="email", name="email", placeholder="Email", required)
                         div(class="form-group")
                             label(class="control-label col-sm-2", for="pwd") Password:
-                            dic(class="col-sm-10")
+                            div(class="col-sm-10")
                                 input(type="password", class="form-control", id="pwd", name="pwd", placeholder="Password", required)
                         div(class="form-group")
                             label(class="control-label col-sm-2", for="repwd") Re-type Password:
-                            dic(class="col-sm-10")
+                            div(class="col-sm-10")
                                 input(type="password", class="form-control", id="repwd", placeholder="Re-type Password", required)
                                 div(id="register-password-error-message")
                                     p Passwords Don't Match
@@ -46,6 +47,7 @@ html
     div(class="container text-center padding10px")
         form(class="form-inline", action="/users/login", method="post", role="form")
             div(class="form-group")
+                input(type="hidden", name="_csrf", value=csrfToken)
                 div(class="padding10pxright")
                     label(class="sr-only", for="email") Email:
                     input(type="email", class="form-control", name="email", id="email", placeholder="Email", required)

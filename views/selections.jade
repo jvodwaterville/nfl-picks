@@ -2,7 +2,15 @@ extends layout
 
 block content
     div(class="container-fluid text-center")
+        if user
+            h2 User Information
+            p First Name: #{user.fName}
+            p Last Name:  #{user.lName}
+            p Email:      #{user.email}
+            p password:  #{user.password}
+            p id:      #{user._id}
         form(name="selections", method="post")
+            input(type="hidden", name="_csrf", value=csrfToken)
             div(class="row")
                 div(class="col-sm-6")
                     div(class="panel panel-default")

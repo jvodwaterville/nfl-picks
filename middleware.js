@@ -10,10 +10,16 @@ module.exports.simpleAuth = function(req,res,next){
     if(req.session && req.session.user){
         models.User.findOne({email: req.session.user.email}, function(err, user){
             if(user){
-                req.user = user;
-                delete req.user.password;
-                req.session.user = user;
-                res.locals.user = user;
+                var cleanUser = {
+                    _id:  user._id,
+                    fName:  user.fName,
+                    lName:   user.lName,
+                    email:      user.email,
+                  };
+
+                req.session.user = cleanUser;
+                req.user = cleanUser;
+                res.locals.user = cleanUser;
             }
             next();
         });

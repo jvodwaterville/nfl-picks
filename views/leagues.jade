@@ -6,12 +6,20 @@ block content
             div(class="modal-content")
                 div(class="modal-header")
                     button(type="button",class="close",data-dismiss="modal") &times;
-                    h4(class="modal-title") Create New League
-                form(name="newLeague", method="post")
+                    h4(class="modal-title") Create League
+                form(class="form-horizontal", role="form", name="register", action='/leagues/createleague', method="post",onsubmit="return validateRegisterForm()", id="register-form")
+                    input(type="hidden", name="_csrf", value=csrfToken)
                     div(class="modal-body")
-                        p Some text in the modal.
+                        div(class="form-group")
+                            label(class="control-label col-sm-2", for="lname") League Name:
+                            div(class="col-sm-10")
+                                input(type="text", class="form-control", id="lname", name="lname", placeholder="League Name", required)
+                        div(class="form-group")
+                            label(class="control-label col-sm-2", for="ecode") Entry Code:
+                            div(class="col-sm-10")
+                                input(type="text", class="form-control", id="ecode", name="ecode", placeholder="Entry Code", required)
                     div(class="modal-footer")
-                        button(type="submit",class="btn btn-default",data-dismiss="modal") Create League
+                        button(type="submit",class="btn btn-default") Create League
     
     div(id="joinLeagueModal",class="modal fade",role="dialog")
         div(class="modal-dialog")
@@ -19,11 +27,19 @@ block content
                 div(class="modal-header")
                     button(type="button",class="close",data-dismiss="modal") &times;
                     h4(class="modal-title") Join League
-                form(name="newLeague", method="post")
+                form(class="form-horizontal", role="form", name="register", action='/leagues/joinleague', method="post",onsubmit="return validateRegisterForm()", id="register-form")
+                    input(type="hidden", name="_csrf", value=csrfToken)
                     div(class="modal-body")
-                        p Some text in the modal.
+                        div(class="form-group")
+                            label(class="control-label col-sm-2", for="lid") League ID:
+                            div(class="col-sm-10")
+                                input(type="text", class="form-control", id="lid", name="lid", placeholder="League ID", required)
+                        div(class="form-group")
+                            label(class="control-label col-sm-2", for="ecode") Entry Code:
+                            div(class="col-sm-10")
+                                input(type="text", class="form-control", id="ecode", name="ecode", placeholder="Entry Code", required)
                     div(class="modal-footer")
-                        button(type="submit",class="btn btn-default",data-dismiss="modal") Join League
+                        button(type="submit",class="btn btn-default") Join League
 
     div(class="container text-center")
         span(class="h2") My Leagues: 

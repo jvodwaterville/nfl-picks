@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET selections page. */
 router.get('/', middleware.requireLogin, function(req, res, next) {
-        res.render('selections', { title: 'Selections' });
+        res.render('selections', { title: 'NFL-Picks | Selections', csrfToken: req.csrfToken() });
 });
 
 module.exports = router;
