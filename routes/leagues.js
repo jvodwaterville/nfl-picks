@@ -5,7 +5,18 @@ var router = express.Router();
 
 /* GET leagues page. */
 router.get('/', middleware.requireLogin, function(req, res, next) {
-  res.render('leagues', { title: 'Leagues', csrfToken: req.csrfToken() });
+    
+    models.League.find({
+        '_id': { $in: res.locals.user.leagues}
+    }, function(err, docs){
+        console.log(docs.length);
+        if(docs.length > 0){
+            res.render('leagues', { title: 'Leagues', leagues: docs, csrfToken: req.csrfToken() });
+        } else {
+            res.render('leagues', { title: 'Leagues', csrfToken: req.csrfToken() });
+        }
+         
+    });
 });
 
 router.post('/createleague', function (req, res) {
@@ -36,7 +47,6 @@ router.post('/createleague', function (req, res) {
         } else {
             //add league to users details
             models.User.findByIdAndUpdate(res.locals.user._id, {$push: {leagues: league._id}}, function (err, user) {
-              if (err) return handleError(err);
               res.redirect('/leagues');
             });
         }
@@ -48,13 +58,14 @@ router.post('/joinleague', function (req, res) {
     var entryCode = req.body.ecode;
     
      models.League.findOne({_id: leagueId}, function(err, league){
-            if(!league){
+            if(!league){ //check if league exists
                 res.send("League doesnt exist.");
-            } else if(league.eCode != entryCode){
+            } else if(league.eCode != entryCode){ //check if password is correct
                 res.send("Wrong password.");
-            } else if(league.status != 0){
+            } else if(league.status != 0){ //check if league has already started
                 res.send("Sorry, this league has already started.");
-            } else {
+            } else { //check if user is already in league
+                
                 var inLeague = false;
                 
                 var a = res.locals.user.leagues;
@@ -67,9 +78,10 @@ router.post('/joinleague', function (req, res) {
                 if(inLeague)
                 {
                     res.send('you are already in this league');
-                } else {
+                } else { //if userisnt already in league add userto league
                     
-                    var newPlayer = {
+                    var newPlayer = { //create new player to add to league based on user
+                        id: res.locals.user._id,
                         Name: res.locals.user.fName + " " + res.locals.user.lName,
                         lastWeekRight: 0,
                         lastWeekWrong: 0,
@@ -78,10 +90,8 @@ router.post('/joinleague', function (req, res) {
                         points: 0,
                     }
                     
-                    models.User.findByIdAndUpdate(res.locals.user._id, {$push: {leagues: leagueId}}, function (err, user) {
-                      if (err) return handleError(err);
-                        models.League.findByIdAndUpdate(leagueId, {$push: {players: newPlayer}}, function (err, league) {
-                          if (err) return handleError(err);
+                    models.User.findByIdAndUpdate(res.locals.user._id, {$push: {leagues: leagueId}}, function (err, user) { //add league to user
+                        models.League.findByIdAndUpdate(leagueId, {$push: {players: newPlayer}}, function (err, league) { //add user to league
                           res.redirect('/leagues');
                         });
                     });
@@ -94,7 +104,9 @@ router.post('/joinleague', function (req, res) {
 
 /* GET league table page. */
 router.get('/:leagueid', middleware.requireLogin, function(req, res, next) {
-  res.render('table', { title: 'League Table' });
+    models.League.findOne({_id:req.params.leagueid}, function (err, league) {
+        res.render('table', { title: 'League Table', league:league });
+    });
 });
 
 /* view league details. */

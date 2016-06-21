@@ -2,7 +2,10 @@ extends layout
 
 block content
     div(class="container text-center padding10px")
-        h3 League Name
+        h2 #{league.lName}
+        if league.status == 0
+            h4 League ID = #{league._id} 
+            h4 League Entry Code = #{league.eCode}
     div(class="container")
         div(class="table-responsive")
             table(class="table table-bordered table-striped tableCenterText")
@@ -14,22 +17,13 @@ block content
                         th Overall
                         th Points
                 tbody
-                    tr
-                        td 1
-                        td Anna Pitt
-                        td 12 - 4
-                        td 12 - 4
-                        td 16
-                    tr
-                        td 2
-                        td Frank Stevens
-                        td 11 - 5
-                        td 11 - 5
-                        td 15
-                    tr
-                        td 3
-                        td Tom Doe
-                        td 12 - 4
-                        td 12 - 4
-                        td 12
+                - var pos = 1
+                    each val in league.players
+                        tr
+                            td #{pos}
+                            td #{val.Name}
+                            td #{val.lastWeekRight} - #{val.lastWeekWrong}
+                            td #{val.overallRight} - #{val.overallWrong}
+                            td #{val.points}
+                        - pos++
                     
