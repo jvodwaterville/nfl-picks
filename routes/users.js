@@ -1,6 +1,7 @@
 var express = require('express');
 var bcrypt = require('bcryptjs');
 var models = require('../models');
+var middleware = require('../middleware');
 var router = express.Router();
 
 /* GET users listing. */
@@ -36,6 +37,7 @@ router.post('/register', function (req, res) {
                 error: error
             });
         } else {
+            req.session.user = user;
             res.redirect('/selections');
         }
     });
@@ -61,7 +63,12 @@ router.post('/login', function(req, res) {
   });
 });
 
-/* GET users listing. */
+/* view user details. */
+router.get('/view', middleware.requireLogin, function (req, res, next) {
+           res.send(res.locals.user);
+});
+
+/* Log out user. */
 router.get('/logout', function (req, res, next) {
     req.session.reset();
     res.redirect('/');

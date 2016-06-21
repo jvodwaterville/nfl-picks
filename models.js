@@ -14,6 +14,7 @@ module.exports.User = mongoose.model('User', new Schema({
   lName:     String,
   email:        { type: String, unique: true },
   password:     String,
+  leagues : { type : Array , "default" : [] },
 }, { collection: 'user' }));
 
 
@@ -26,5 +27,7 @@ module.exports.League = mongoose.model('League', new Schema({
   id:           ObjectId,
   lName:    String,
   eCode:     String,
+  status: { type : String , "default" : 0 },
   admin:     String,
+  players: Array,
 }, { collection: 'league' }));

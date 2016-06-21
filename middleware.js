@@ -15,6 +15,7 @@ module.exports.simpleAuth = function(req,res,next){
                     fName:  user.fName,
                     lName:   user.lName,
                     email:      user.email,
+                    leagues:      user.leagues,
                   };
 
                 req.session.user = cleanUser;

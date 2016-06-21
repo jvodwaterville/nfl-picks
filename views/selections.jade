@@ -7,7 +7,6 @@ block content
             p First Name: #{user.fName}
             p Last Name:  #{user.lName}
             p Email:      #{user.email}
-            p password:  #{user.password}
             p id:      #{user._id}
         form(name="selections", method="post")
             input(type="hidden", name="_csrf", value=csrfToken)
