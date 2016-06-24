@@ -54,5 +54,7 @@ block content
                         div(class="col-sm-9")
                             input(type="text", class="form-control", id="spread1", name="spread1", placeholder="Points Spread", required)
         div(class="btn-group margin10px")
-            div(class="btn btn-default") Add Another Game
+            div(class="btn btn-default" onClick="addAnotherGame()") Add Another Game
             button(type="submit",class="btn btn-default") Save Gameweek
+
+    script(src="/javascripts/addgameweek.js")

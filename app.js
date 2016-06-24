@@ -106,5 +106,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.locals.pretty = true;
 
 module.exports = app;
