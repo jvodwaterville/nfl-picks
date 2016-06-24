@@ -9,11 +9,11 @@ router.get('/', middleware.requireLogin, function(req, res, next) {
     models.League.find({
         '_id': { $in: res.locals.user.leagues}
     }, function(err, docs){
-        console.log(docs.length);
+
         if(docs.length > 0){
             res.render('leagues', { title: 'Leagues', leagues: docs, csrfToken: req.csrfToken() });
         } else {
-            res.render('leagues', { title: 'Leagues', csrfToken: req.csrfToken() });
+            res.render('leagues', { title: 'Leagues', csrfToken: req.csrfToken()});
         }
          
     });

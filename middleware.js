@@ -15,6 +15,7 @@ module.exports.simpleAuth = function(req,res,next){
                     fName:  user.fName,
                     lName:   user.lName,
                     email:      user.email,
+                    admin:      user.admin,
                     leagues:      user.leagues,
                   };
 
@@ -36,6 +37,19 @@ module.exports.simpleAuth = function(req,res,next){
  */
 module.exports.requireLogin = function(req, res, next) {
   if (!req.user) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+};
+
+/**
+ * Ensure a user is logged in before allowing them to continue their request.
+ *
+ * If a user isn't logged in, they'll be redirected back to the login page.
+ */
+module.exports.requireAdmin = function(req, res, next) {
+  if (req.user.admin != true) {
     res.redirect('/');
   } else {
     next();

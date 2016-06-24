@@ -1,0 +1,58 @@
+extends layout
+
+block content
+    form(class="form-horizontal text-center", role="form", name="register", action='/admin/addgameweek', method="post",onsubmit="return validateRegisterForm()", id="register-form")
+        div(class="container")
+            if error
+                p(class="h4") #{error}
+            if correct
+                p(class="h4") #{correct}
+            span(class="h4") Add New Gameweek:
+            input(type="hidden", name="_csrf", value=csrfToken)
+            div(class="form-group")
+                label(class="control-label col-sm-2", for="gw") Gameweek Number:
+                div(class="col-sm-10")
+                    input(type="text", class="form-control", id="gw", name="gw", placeholder="Gameweek Number", required)
+            div(class="form-group")
+                label(class="control-label col-sm-2", for="start") Start Date:
+                div(class="col-sm-10")
+                    input(type="date", class="form-control", id="start", name="start", placeholder="Start Date", required)
+            div(class="form-group")
+                label(class="control-label col-sm-2", for="end") End Date:
+                div(class="col-sm-10")
+                    input(type="date", class="form-control", id="end", name="end", placeholder="End Date", required)
+        div(class="container")
+            div(class="row" id="add-games-holder")
+                div(class="col-sm-12")
+                    p(class="h4") Game 1
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="ht1") Home Team:
+                        div(class="col-sm-9")
+                            select(class="form-control", id="ht1", name="ht1", required)
+                                each val in teams
+                                    option(value="#{val.city} #{val.name}") #{val.city} #{val.name}
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="at1") Away Team:
+                        div(class="col-sm-9")
+                            select(class="form-control", id="at1", name="at1", required)
+                                each val in teams
+                                    option(value="#{val.city} #{val.name}") #{val.city} #{val.name}
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="date1") Date:
+                        div(class="col-sm-9")
+                            input(type="date", class="form-control", id="date1", name="date1", placeholder="Date", required)
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="time1") Time:
+                        div(class="col-sm-9")
+                            input(type="time", class="form-control", id="time1", name="time1", placeholder="Time", required)
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="handicap1") Handicap (Home Team):
+                        div(class="col-sm-9")
+                            input(type="text", class="form-control", id="handicap1", name="handicap1", placeholder="Handicap", required)
+                    div(class="form-group")
+                        label(class="control-label col-sm-3", for="spread1") Points Spread:
+                        div(class="col-sm-9")
+                            input(type="text", class="form-control", id="spread1", name="spread1", placeholder="Points Spread", required)
+        div(class="btn-group margin10px")
+            div(class="btn btn-default") Add Another Game
+            button(type="submit",class="btn btn-default") Save Gameweek

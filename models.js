@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 /**
- * Our User model.
+ * User model.
  *
  * This is how we create, edit, delete, and retrieve user accounts via MongoDB.
  */
@@ -15,11 +15,12 @@ module.exports.User = mongoose.model('User', new Schema({
   email:        { type: String, unique: true },
   password:     String,
   leagues : { type : Array , "default" : [] },
+  admin : { type : Boolean , "default" : false },
 }, { collection: 'user' }));
 
 
 /**
- * Our League model.
+ * League model.
  *
  * This is how we create, edit, delete, and retrieve leagues via MongoDB.
  */
@@ -31,3 +32,30 @@ module.exports.League = mongoose.model('League', new Schema({
   admin:     String,
   players: Array,
 }, { collection: 'league' }));
+
+/**
+ * NFL Team model.
+ *
+ * This is how we create, edit, delete, and retrieve leagues via MongoDB.
+ */
+module.exports.Team = mongoose.model('Team', new Schema({
+  id:           ObjectId,
+  city:    String,
+  name:     String,
+  division:     String,
+  results: Array,
+}, { collection: 'team' }));
+
+/**
+ * Gameweek model.
+ *
+ * This is how we create, edit, delete, and retrieve leagues via MongoDB.
+ */
+module.exports.Gameweek = mongoose.model('Gameweek', new Schema({
+  id:           ObjectId,
+  gameweek:    { type : Number , unique : true },
+  startdate:     Date,
+  enddate:     Date,
+  status:     { type : Number , "default" : 0 },
+  fixtures: Array,
+}, { collection: 'gameweek' }));
