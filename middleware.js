@@ -49,8 +49,8 @@ module.exports.requireLogin = function(req, res, next) {
  * If a user isn't logged in, they'll be redirected back to the login page.
  */
 module.exports.requireAdmin = function(req, res, next) {
-  if (req.user.admin != true) {
-    res.redirect('/');
+  if (!req.user || req.user.admin != true) {
+    res.redirect('/selections');
   } else {
     next();
   }

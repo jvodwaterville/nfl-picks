@@ -4,6 +4,10 @@ var middleware = require('../middleware');
 var router = express.Router();
 
 /* GET add team page. */
+router.get('/', middleware.requireAdmin ,function (req, res, next) {
+    res.send('Admin Home Page Here');
+});
+/* GET add team page. */
 router.get('/addteam', middleware.requireAdmin ,function (req, res, next) {
     res.render('addTeam', { title: 'Admin: Add Team', csrfToken: req.csrfToken()});
 });
