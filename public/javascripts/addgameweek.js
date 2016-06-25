@@ -118,6 +118,8 @@ function addAnotherGame(){
 
     document.getElementById("game-"+gameNumber+"-holder").innerHTML = form;
 
+    document.getElementById('numgames').value = gameNumber;
+    
     gameNumber++;
 
 }

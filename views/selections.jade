@@ -5,130 +5,29 @@ block content
         form(name="selections", method="post")
             input(type="hidden", name="_csrf", value=csrfToken)
             div(class="row")
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading") 
-                            span(class="h4") Team A @ Team B
-                            input(class="pull-right", type="radio", name="nap", value="game1", checked="true") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team A - 3 
-                                    input(type="radio", name="game1", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team B + 3 
-                                    input(type="radio", name="game1", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game1", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game1", value="over") 
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading") 
-                            span(class="h4") Team C @ Team D
-                            input(class="pull-right", type="radio", name="nap", value="game1") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team C - 3 
-                                    input(type="radio", name="game2", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team D + 3 
-                                    input(type="radio", name="game2", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game2", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game2", value="over") 
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading") 
-                            span(class="h4") Team A @ Team B
-                            input(class="pull-right", type="radio", name="nap", value="game1") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team A - 3 
-                                    input(type="radio", name="game3", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team B + 3 
-                                    input(type="radio", name="game3", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game3", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game3", value="over") 
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading")
-                            span(class="h4") Team C @ Team D
-                            input(class="pull-right", type="radio", name="nap", value="game1") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team C - 3 
-                                    input(type="radio", name="game4", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team D + 3 
-                                    input(type="radio", name="game4", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game4", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game4", value="over") 
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading") 
-                            span(class="h4") Team A @ Team B
-                            input(class="pull-right", type="radio", name="nap", value="game1") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team A - 3 
-                                    input(type="radio", name="game5", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team B + 3 
-                                    input(type="radio", name="game5", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game5", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game5", value="over") 
-                div(class="col-sm-6")
-                    div(class="panel panel-default")
-                        div(class="panel-heading") 
-                            span(class="h4") Team C @ Team D
-                            input(class="pull-right", type="radio", name="nap", value="game1") 
-                            label(class="pull-right padding10pxright") Nap
-                        div(class="panel-body")
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Team C - 3 
-                                    input(type="radio", name="game6", value="team1", checked="true") 
-                                div(class="col-sm-6 pickButton")
-                                    span Team D + 3 
-                                    input(type="radio", name="game6", value="team2") 
-                            div(class="row")
-                                div(class="col-sm-6 pickButton")
-                                    span Under 30.5 
-                                    input(type="radio", name="game6", value="under") 
-                                div(class="col-sm-6 pickButton")
-                                    span Over 30.5 
-                                    input(type="radio", name="game6", value="over")
+                -var gameNumber = 1
+                each val in games.fixtures[0]
+                    -var handicap = val.handicap
+                    div(class="col-sm-6")
+                        div(class="panel panel-default")
+                            div(class="panel-heading") 
+                                span(class="h4") #{val.awayTeam} @ #{val.homeTeam}
+                                input(class="pull-right", type="radio", name="nap", value="game1", checked="true") 
+                                label(class="pull-right padding10pxright") Nap
+                            div(class="panel-body")
+                                div(class="row")
+                                    div(class="col-sm-6 pickButton")
+                                        span #{val.awayTeam} #{val.handicap} 
+                                        input(type="radio", name="game#{gameNumber}", value="awayTeam", checked="true") 
+                                    div(class="col-sm-6 pickButton")
+                                        span #{val.homeTeam} #{val.handicap}
+                                        input(type="radio", name="game#{gameNumber}", value="homeTeam") 
+                                div(class="row")
+                                    div(class="col-sm-6 pickButton")
+                                        span Under #{val.spread} 
+                                        input(type="radio", name="game#{gameNumber}", value="under") 
+                                    div(class="col-sm-6 pickButton")
+                                        span Over #{val.spread}
+                                        input(type="radio", name="game#{gameNumber}", value="over") 
+                    - gameNumber++
             button(class="btn btn-default btn-md", type="submit") Save Selections

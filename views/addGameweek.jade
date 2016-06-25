@@ -9,6 +9,7 @@ block content
                 p(class="h4") #{correct}
             span(class="h4") Add New Gameweek:
             input(type="hidden", name="_csrf", value=csrfToken)
+            input(type="hidden", id="numgames", name="numgames", value="1")
             div(class="form-group")
                 label(class="control-label col-sm-2", for="gw") Gameweek Number:
                 div(class="col-sm-10")

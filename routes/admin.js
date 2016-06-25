@@ -48,13 +48,29 @@ router.get('/addgameweek', middleware.requireAdmin ,function (req, res, next) {
 /* POST add team to database */
 router.post('/addgameweek', function (req, res) {
 
-
+    var games = {};
+    for(var i = 1; i <= req.body.numgames; i++){
+        var game = {};
+        game["homeTeam"] = req.body['ht' + i];
+        game["awayTeam"] = req.body['at' + i];
+        game["homeScore"] = 0;
+        game["awayScore"] = 0;
+        game["date"] = req.body['date' + i];
+        game["time"] = req.body['time' + i];
+        game["handicap"] = req.body['handicap' + i];
+        game["spread"] = req.body['spread' + i];
+        
+        games["game" + i] = game;
+    }
+    
+    console.log(games);
 
     //
     var gameweek = new models.Gameweek({
         gameweek: req.body.gw,
         startdate: req.body.start,
         enddate: req.body.end,
+        fixtures: games,
     });
 
     //
@@ -62,13 +78,9 @@ router.post('/addgameweek', function (req, res) {
         if (err) {
             var error = 'Something bad happened! Please try again.';
 
-            res.render('addGameweek', {
-                error: error, csrfToken: req.csrfToken()
-            });
+            res.redirect('/admin/addgameweek');
         } else {
-            res.render('addGameweek', {
-                correct: "Gameweek Added.", csrfToken: req.csrfToken()
-            });
+            res.redirect('/admin/addgameweek');
         }
     });
 });
